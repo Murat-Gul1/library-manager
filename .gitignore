@@ -1,0 +1,55 @@
+################################################################################
+# JetBrains IDEs (IntelliJ IDEA, Android Studio, WebStorm, PhpStorm, Rider …)
+################################################################################
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/mongoSettings.xml
+.idea/**/replstate.xml
+.idea/**/sonarlint/
+.idea/**/httpRequests
+.idea/**/libraries
+# IntelliJ project/module files
+.idea_modules/
+.idea/*.iml
+*.iml
+
+################################################################################
+# Build artefacts 
+################################################################################
+out/
+bin/
+target/
+build/
+*.class
+*.jar
+*.war
+*.ear
+
+################################################################################
+# CMake 
+################################################################################
+cmake-build-*/
+
+################################################################################
+# Log & temp files
+################################################################################
+*.log
+*.tmp
+
+################################################################################
+# OS 
+################################################################################
+.DS_Store
+Thumbs.db
