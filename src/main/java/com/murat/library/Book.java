@@ -1,5 +1,5 @@
 package com.murat.library;
-
+import com.murat.library.utils.BookUtils;
 import java.time.LocalDate;
 /**
  * Represents a book in the library system.
@@ -33,19 +33,19 @@ public class Book {
      * @param borrowedDate The date the book was borrowed.
      * @param returnDate The date the book should be returned.
      */
-    public Book(String libraryCode,String title,String author,int pageCount
-    ,String category,LocalDate borrowedDate,LocalDate returnDate){
-        setLibraryCode(libraryCode);
-        setTitle(title);
-        setAuthor(author);
-        setPageCount(pageCount);
-        setCategory(category);
+    public Book(String libraryCode, String title, String author, int pageCount
+    ,String category, LocalDate borrowedDate, LocalDate returnDate){
+        this.libraryCode = BookUtils.validateBasicText(libraryCode,"Library Code");
+        this.title = BookUtils.validateBasicText(title, "Title");
+        this.author = BookUtils.validateNameText(author,"Author");
+        this.pageCount = BookUtils.validatePageCount(pageCount);
+        this.category = BookUtils.validateNameText(category,"Category");
         setBorrowedDate(borrowedDate);
         setReturnDate(returnDate);
     }
 
     public void setLibraryCode(String libraryCode){
-        this.libraryCode = libraryCode;
+        this.libraryCode = BookUtils.validateBasicText(libraryCode,"Library Code");
     }
 
     public String getLibraryCode(){
@@ -57,7 +57,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = BookUtils.validateBasicText(title , "Title");
     }
 
     public String getAuthor() {
@@ -65,7 +65,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = BookUtils.validateNameText(author,"Author");
     }
 
     public int getPageCount() {
@@ -73,7 +73,7 @@ public class Book {
     }
 
     public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
+        this.pageCount = BookUtils.validatePageCount(pageCount);
     }
 
     public String getCategory() {
@@ -81,7 +81,7 @@ public class Book {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = BookUtils.validateNameText(category,"Category");
     }
 
     public LocalDate getBorrowedDate() {
