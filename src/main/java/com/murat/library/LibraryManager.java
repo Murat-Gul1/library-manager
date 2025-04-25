@@ -9,14 +9,8 @@ import java.util.List;
  */
 public class LibraryManager {
 
-    private List<Book> catalog;
+    private static final List<Book> catalog = new ArrayList<>();
 
-    /**
-     * Initializes an empty library catalog.
-     */
-    public LibraryManager() {
-        this.catalog = new ArrayList<>();
-    }
 
     /**
      * Adds a book to the catalog.
