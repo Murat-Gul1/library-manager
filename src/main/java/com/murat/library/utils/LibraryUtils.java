@@ -31,4 +31,28 @@ public class LibraryUtils {
 
     }
 
+    /**
+     * Filters the book catalog by category and prints matching books to the console.
+     * <p>
+     * If at least one book in the specified category is found, the book details are printed.
+     * Otherwise, a message is displayed indicating that no books were found.
+     *
+     * @param manager  the LibraryManager instance that holds the catalog of books
+     * @param category the category to filter books by (case-insensitive)
+     */
+    public static void filterByCategory(LibraryManager manager , String category){
+        boolean anyMatch = false;
+        for(Book book : manager.getCatalog()){
+            if(book.getCategory().equalsIgnoreCase(category)){
+                if (!anyMatch) {
+                    anyMatch = true;
+                }
+                System.out.println(book);
+            }
+        }
+        if(!anyMatch){
+            System.out.println("No books found in category '" + category + "'.");
+        }
+    }
+
 }
