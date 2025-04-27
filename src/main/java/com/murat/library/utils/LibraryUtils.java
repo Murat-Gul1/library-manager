@@ -80,4 +80,36 @@ public class LibraryUtils {
         }
     }
 
+    /**
+     * Searches for books by author, category, and maximum page count.
+     * All criteria must be satisfied to include a book in the result.
+     * Prints matching books or a message if none found.
+     *
+     * @param manager      the LibraryManager instance
+     * @param author       the author's name to match (case-insensitive)
+     * @param category     the category to match (case-insensitive)
+     * @param maxPageCount the maximum allowed page count
+     */
+    public static void advancedSearch(LibraryManager manager, String author, String category, int maxPageCount){
+        author = BookUtils.validateNameText(author,"Author");
+        category = BookUtils.validateNameText(category,"Category");
+        BookUtils.validatePageCount(maxPageCount);
+        boolean anyMatch = false;
+        for(Book book : manager.getCatalog()){
+            boolean authorMatch = book.getAuthor().equalsIgnoreCase(author);
+            boolean categoryMatch = book.getCategory().equalsIgnoreCase(category);
+            boolean pageMatch = book.getPageCount() <= maxPageCount;
+            if(authorMatch && categoryMatch && pageMatch ){
+                if(!anyMatch){
+                    System.out.println("Matching books:");
+                    anyMatch = true;
+                }
+                System.out.println(book);
+            }
+        }
+        if(!anyMatch){
+            System.out.println("No books matched the given criteria.");
+        }
+    }
+
 }
