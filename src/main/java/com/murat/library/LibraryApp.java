@@ -16,6 +16,7 @@ public class LibraryApp {
         manager .addBook(b1);
         manager.addBook(b2);
         manager.addBook(b3);
-        LibraryUtils.advancedSearch(manager,"murat gul","horodr",90);
+        LibraryUtils.updateBookByCode(manager,"12");
+        manager.listBooks();
     }
 }

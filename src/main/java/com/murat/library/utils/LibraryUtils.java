@@ -1,6 +1,9 @@
 package com.murat.library.utils;
 import com.murat.library.Book;
 import com.murat.library.LibraryManager;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
 /**
  * Utility class for library-related helper methods.
  * Contains reusable static methods for interacting with the LibraryManager.
@@ -109,6 +112,94 @@ public class LibraryUtils {
         }
         if(!anyMatch){
             System.out.println("No books matched the given criteria.");
+        }
+    }
+    public static void updateBookByCode(LibraryManager manager ,String libraryCode){
+        Scanner scan = new Scanner(System.in);
+        boolean exit = false;
+        boolean found = false;
+            for (Book book : manager.getCatalog()) {
+                if (book.getLibraryCode().equals(libraryCode)) {
+                    found = true;
+                    while (!exit) {
+                    System.out.println("Make your choice");
+                    System.out.println("1 --> New title");
+                    System.out.println("2 --> New author");
+                    System.out.println("3 --> New category");
+                    System.out.println("4 --> New page count");
+                    System.out.println("5 --> New borrowed date");
+                    System.out.println("6 --> New return date");
+                    System.out.println("7 --> Exit");
+                    int choose = scan.nextInt();
+                    scan.nextLine();
+                    switch (choose) {
+                        case 1 -> {
+                            System.out.println("Enter new title");
+                            String newTitle = scan.nextLine();
+                            book.setTitle(BookUtils.validateBasicText(newTitle, "Title"));
+                            System.out.println("Title updated.");
+                            break;
+                        }
+                        case 2 -> {
+                            System.out.println("Enter new author");
+                            String newAuthor = scan.nextLine();
+                            book.setAuthor(BookUtils.validateNameText(newAuthor, "Author"));
+                            System.out.println("Author updated.");
+                            break;
+                        }
+                        case 3 -> {
+                            System.out.println("Enter new category");
+                            String newCategory = scan.nextLine();
+                            book.setCategory(BookUtils.validateNameText(newCategory, "Category"));
+                            System.out.println("Category updated.");
+                            break;
+                        }
+                        case 4 -> {
+                            System.out.println("Enter new Page count");
+                            int newPageCount = scan.nextInt();
+                            scan.nextLine();
+                            book.setPageCount(BookUtils.validatePageCount(newPageCount));
+                            System.out.println("Page count updated.");
+                            break;
+                        }
+                        case 5 -> {
+                            System.out.println("Enter new borrowed date");
+                            String borrowedDate = scan.nextLine();
+                            LocalDate newBorrowedDate;
+                            try {
+                                newBorrowedDate = LocalDate.parse(borrowedDate);
+                                book.setBorrowedDate(newBorrowedDate);
+                                System.out.println("Borrowed date updated.");
+                            } catch (DateTimeParseException e) {
+                                System.out.println("You can enter the date as yyyy-MM-dd.");
+                            }
+                            break;
+                        }
+                        case 6 -> {
+                            System.out.println("Enter new return date");
+                            String returnDate = scan.nextLine();
+                            LocalDate newReturnDate;
+                            try {
+                                newReturnDate = LocalDate.parse(returnDate);
+                                book.setReturnDate(newReturnDate);
+                                System.out.println("Return date updated.");
+                            } catch (DateTimeParseException e) {
+                                System.out.println("You can enter the date as yyyy-MM-dd.");
+                            }
+                            break;
+                        }
+                        case 7 ->{
+                            exit = true;
+                        }
+                    }
+
+                }
+                    break;
+            }
+
+        }
+        if(!found){
+            System.out.println("No book found with library code '" + libraryCode + "'.");
         }
     }
 
