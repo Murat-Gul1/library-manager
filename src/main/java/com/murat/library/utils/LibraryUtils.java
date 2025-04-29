@@ -136,31 +136,44 @@ public class LibraryUtils {
                         case 1 -> {
                             System.out.println("Enter new title");
                             String newTitle = scan.nextLine();
-                            book.setTitle(BookUtils.validateBasicText(newTitle, "Title"));
-                            System.out.println("Title updated.");
-                            break;
+                            try {
+                                book.setTitle(BookUtils.validateBasicText(newTitle, "Title"));
+                                System.out.println("Title updated.");
+                            }catch(IllegalArgumentException e){
+                                System.out.println(e.getMessage());
+                            }
+
                         }
                         case 2 -> {
                             System.out.println("Enter new author");
                             String newAuthor = scan.nextLine();
-                            book.setAuthor(BookUtils.validateNameText(newAuthor, "Author"));
-                            System.out.println("Author updated.");
-                            break;
+                            try {
+                                book.setAuthor(BookUtils.validateNameText(newAuthor, "Author"));
+                                System.out.println("Author updated.");
+                            }catch(IllegalArgumentException e){
+                                System.out.println(e.getMessage());
+                            }
                         }
                         case 3 -> {
                             System.out.println("Enter new category");
                             String newCategory = scan.nextLine();
-                            book.setCategory(BookUtils.validateNameText(newCategory, "Category"));
-                            System.out.println("Category updated.");
-                            break;
+                            try {
+                                book.setCategory(BookUtils.validateNameText(newCategory, "Category"));
+                                System.out.println("Category updated.");
+                            }catch(IllegalArgumentException e){
+                                System.out.println(e.getMessage());
+                            }
                         }
                         case 4 -> {
                             System.out.println("Enter new Page count");
                             int newPageCount = scan.nextInt();
                             scan.nextLine();
-                            book.setPageCount(BookUtils.validatePageCount(newPageCount));
-                            System.out.println("Page count updated.");
-                            break;
+                            try {
+                                book.setPageCount(BookUtils.validatePageCount(newPageCount));
+                                System.out.println("Page count updated.");
+                            }catch(IllegalArgumentException e){
+                                System.out.println(e.getMessage());
+                            }
                         }
                         case 5 -> {
                             System.out.println("Enter new borrowed date");
