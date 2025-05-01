@@ -1,14 +1,18 @@
 package com.murat.library;
 import com.murat.library.utils.BookUtils;
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * Represents a book in the library system.
  * Each book has a unique library code and contains metadata such as title, author,
  * page count, category, and loan-related information.
  */
 public class Book {
+    /** Thread-safe global counter used to guarantee a unique suffix in every auto-generated libraryCode */
+    private static final AtomicLong COUNTER = new AtomicLong();
     /** Unique identifier of the book in the library system. */
-    private String libraryCode;
+    private final String libraryCode;
     /** Title of the book. */
     private String title;
     /** Author of the book. */
@@ -22,10 +26,18 @@ public class Book {
     /** The due date for returning the book. */
     private LocalDate returnDate;
 
+    /**
+     * Generates a unique library code of the form
+     * BK-{epochMillis}-{incrementingCounter}.
+     * Combining the current timestamp with an atomic counter guarantees
+     * collision-free IDs even when multiple books are created in the same millisecond.
+     */
+    private static String generateCode(){
+        return "Bk-" + System.currentTimeMillis() + " - " + COUNTER.incrementAndGet();
+    }
 
     /**
      * Constructs a Book object with all required fields.
-     * @param libraryCode Unique code assigned to this book.
      * @param title Title of the book.
      * @param author Author of the book.
      * @param pageCount Total number of pages.
@@ -33,19 +45,15 @@ public class Book {
      * @param borrowedDate The date the book was borrowed.
      * @param returnDate The date the book should be returned.
      */
-    public Book(String libraryCode, String title, String author, int pageCount
+    public Book( String title, String author, int pageCount
     ,String category, LocalDate borrowedDate, LocalDate returnDate){
-        this.libraryCode = BookUtils.validateBasicText(libraryCode,"Library Code");
+        this.libraryCode = generateCode();
         this.title = BookUtils.validateBasicText(title, "Title");
         this.author = BookUtils.validateNameText(author,"Author");
         this.pageCount = BookUtils.validatePageCount(pageCount);
         this.category = BookUtils.validateNameText(category,"Category");
         setBorrowedDate(borrowedDate);
         setReturnDate(returnDate);
-    }
-
-    public void setLibraryCode(String libraryCode){
-        this.libraryCode = BookUtils.validateBasicText(libraryCode,"Library Code");
     }
 
     public String getLibraryCode(){
