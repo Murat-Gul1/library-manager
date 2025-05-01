@@ -48,5 +48,17 @@ public class BookUtils {
         }
         return pageCount;
     }
-
+    /**
+     * Validates a level value (1–10) used for scareLevel, spiceLevel, etc.
+     *
+     * @param level the level to validate
+     * @return the same level if valid
+     * @throws IllegalArgumentException if level is not in the 1–10 range
+     */
+    public static int validateLevel1to10(int level){
+        if(level < 1 || level > 10){
+            throw new IllegalArgumentException("Level must be between 1 and 10");
+        }
+        return level;
+    }
 }
