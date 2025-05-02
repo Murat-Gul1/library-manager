@@ -1,5 +1,6 @@
 package com.murat.library;
 
+import com.murat.library.genres.DetectiveBook;
 import com.murat.library.genres.HorrorBook;
 import com.murat.library.utils.LibraryUtils;
 
@@ -7,14 +8,19 @@ import java.time.LocalDate;
 
 public class LibraryApp {
     public static void main(String[] args){
-        LibraryManager manager = new LibraryManager();
-    HorrorBook h1 = new HorrorBook("Scary","Murat",62,"Horor",LocalDate.of(2025,4,12),LocalDate.now(),
-            "psychological",4);
-        HorrorBook h2 = new HorrorBook("extremely scary","Murat",23,"Horor",LocalDate.of(2025,4,12),LocalDate.now(),
-                "Zombie",4);
-    manager.addBook(h1);
-    manager.addBook(h2);
+    LibraryManager manager = new LibraryManager();
+    HorrorBook b1 = new HorrorBook("doul","murat",56,"Horor",
+    LocalDate.of(2021,2,4),LocalDate.now(),"Killer",6);
+        HorrorBook b2 = new HorrorBook("doul","murat",56,"Horor",
+                LocalDate.of(2021,2,4),LocalDate.now(),"Killer",6);
+    manager.addBook(b1);
+        manager.addBook(b2);
+    DetectiveBook d1 = new DetectiveBook("crayz","murat",678,"Detective"
+    ,LocalDate.of(2024,5,6),LocalDate.now(),7,"soul");
+        DetectiveBook d2 = new DetectiveBook("crayz","murat",678,"Detective"
+                ,LocalDate.of(2024,5,6),LocalDate.now(),7,"soul");
+    manager.addBook(d1);
+        manager.addBook(d2);
     manager.listBooks();
-
     }
 }

@@ -2,6 +2,10 @@ package com.murat.library.genres;
 import com.murat.library.Book;
 import com.murat.library.utils.BookUtils;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A concrete {@link Book} representing works in the horror genre.
@@ -17,12 +21,35 @@ import java.time.LocalDate;
  */
 
 public class HorrorBook extends Book {
+    private static final AtomicInteger counter = new AtomicInteger();
+    private static final Random random = new Random();
     /** Refines the horror type, e.g. “zombie outbreak”, “psychological”. */
     private String subGenre;
 
     /** Fright factor; must stay between 1 and 10 (inclusive). */
     private int scareLevel;
+    /** Immutable, system‑generated identifier that uniquely distinguishes every book instance. */
+    private final String libraryCode;
 
+    /**
+     * Generates a unique library code using a timestamp, random number, and counter.
+     * Format: Bk-HyyyyMMddHHmmssSSS-<random>-<counter>
+     * Components:
+     * - Timestamp: current date and time down to milliseconds (e.g., 20240503143015123)
+     * - Random Part: a 3-digit random number (000–999) to reduce collision chance
+     * - Counter: an incrementing integer to ensure uniqueness across rapid calls
+     * Example: Bk-H20240503143015123-042-17
+     */
+    private static String generateCode(){
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter
+                .ofPattern("yyyyMMddHHmmssSSS"));
+
+        int randomPart = random.nextInt(1000);
+
+        int count = counter.getAndIncrement();
+
+        return "Bk-H" + timestamp +"-" + String.format("%03d",randomPart) +"-" +count;
+    }
 
     /**
      * Creates a {@code HorrorBook} with horror-specific attributes.
@@ -42,7 +69,10 @@ public class HorrorBook extends Book {
         super(title,author,pageCount,category,borrowedDate,returnDate);
             this.subGenre = BookUtils.validateNameText(subGenre, "Sub Genre");
             this.scareLevel = BookUtils.validateLevel1to10(scareLevel);
+            this.libraryCode = generateCode();
+            super.setLibraryCode(libraryCode);
     }
+
     /* ---------- accessors ---------- */
     public void setSubGenre(String subGenre){
             this.subGenre = BookUtils.validateNameText(subGenre,"Sub-Genre");
@@ -59,7 +89,7 @@ public class HorrorBook extends Book {
 
     @Override
     public  String toString(){
-       return super.toString() +
+       return   super.toString() +
                " | Sub-genre: " + subGenre +
                " | Scare Level: " + scareLevel;
     }

@@ -1,7 +1,7 @@
 package com.murat.library;
 import com.murat.library.utils.BookUtils;
 import java.time.LocalDate;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 /**
  * Represents a book in the library system.
@@ -9,10 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * page count, category, and loan-related information.
  */
 public class Book {
-    /** Thread-safe global counter used to guarantee a unique suffix in every auto-generated libraryCode */
-    private static final AtomicLong COUNTER = new AtomicLong();
-    /** Unique identifier of the book in the library system. */
-    private final String libraryCode;
+    private  String libraryCode;
     /** Title of the book. */
     private String title;
     /** Author of the book. */
@@ -26,15 +23,6 @@ public class Book {
     /** The due date for returning the book. */
     private LocalDate returnDate;
 
-    /**
-     * Generates a unique library code of the form
-     * BK-{epochMillis}-{incrementingCounter}.
-     * Combining the current timestamp with an atomic counter guarantees
-     * collision-free IDs even when multiple books are created in the same millisecond.
-     */
-    private static String generateCode(){
-        return "Bk-" + System.currentTimeMillis() + " - " + COUNTER.incrementAndGet();
-    }
 
     /**
      * Constructs a Book object with all required fields.
@@ -47,7 +35,6 @@ public class Book {
      */
     public Book( String title, String author, int pageCount
     ,String category, LocalDate borrowedDate, LocalDate returnDate){
-        this.libraryCode = generateCode();
         this.title = BookUtils.validateBasicText(title, "Title");
         this.author = BookUtils.validateNameText(author,"Author");
         this.pageCount = BookUtils.validatePageCount(pageCount);
@@ -58,6 +45,9 @@ public class Book {
 
     public String getLibraryCode(){
         return libraryCode;
+    }
+    protected void setLibraryCode(String libraryCode){
+        this.libraryCode = libraryCode;
     }
 
     public String getTitle() {
@@ -115,7 +105,7 @@ public class Book {
      */
     @Override
     public String toString(){
-        return  "Library Code :" + libraryCode + "|"+
+        return  "Library Code: " + libraryCode + "|" +
                 " Title: " + title + "|" +
                 " Author: " + author + "|" +
                 " Page Count: " + pageCount + "|" +
