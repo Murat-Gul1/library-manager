@@ -73,7 +73,6 @@ public class HorrorBook extends Book {
             super.setLibraryCode(libraryCode);
     }
 
-    /* ---------- accessors ---------- */
     public void setSubGenre(String subGenre){
             this.subGenre = BookUtils.validateNameText(subGenre,"Sub-Genre");
     }
