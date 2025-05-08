@@ -98,6 +98,11 @@ public class FantasyBook extends Book{
         return fantasyLevel;
     }
 
+    @Override
+    public String getLibraryCode() {
+        return libraryCode;
+    }
+
     /**
      * Returns a string including both base and fantasy-specific book details.
      *

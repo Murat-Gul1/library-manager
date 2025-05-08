@@ -104,6 +104,11 @@ public class ScienceFictionBook extends Book {
         return scientificLevel;
     }
 
+    @Override
+    public String getLibraryCode() {
+        return libraryCode;
+    }
+
     /**
      * Returns a printable string with all book details, including science fiction–specific fields.
      *

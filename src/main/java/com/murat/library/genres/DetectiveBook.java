@@ -116,6 +116,10 @@ public class DetectiveBook extends Book {
         return subGenre;
     }
 
+    @Override
+    public String getLibraryCode() {
+        return libraryCode;
+    }
 
     /** Adds detective‑specific details to the base {@link Book#toString()}. */
     @Override

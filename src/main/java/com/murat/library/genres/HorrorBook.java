@@ -87,6 +87,11 @@ public class HorrorBook extends Book {
     }
 
     @Override
+    public String getLibraryCode() {
+        return libraryCode;
+    }
+
+    @Override
     public  String toString(){
        return   super.toString() +
                " | Sub-genre: " + subGenre +
