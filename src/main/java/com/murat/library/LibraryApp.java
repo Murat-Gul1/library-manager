@@ -1,21 +1,22 @@
 package com.murat.library;
-
-import com.murat.library.genres.DetectiveBook;
-import com.murat.library.genres.FantasyBook;
-import com.murat.library.genres.HorrorBook;
-import com.murat.library.genres.ScienceFictionBook;
-import com.murat.library.utils.LibraryUtils;
-
+import com.murat.library.genres.*;
 import java.time.LocalDate;
-
+import java.util.Scanner;
 public class LibraryApp {
     public static void main(String[] args){
+    Scanner scanner = new Scanner(System.in);
     LibraryManager manager = new LibraryManager();
-        FantasyBook b1 = new FantasyBook("fantasy","murat",456,"Fantasy",
-                LocalDate.of(2025,3,12),LocalDate.now(),"zombie",6);
-        manager.addBook(b1);
-        manager.listBooks();
+    boolean exit = false;
+    
+    
 
+    }
 
+    public static void initializeSampleBooks(LibraryManager manager){
+        BiographyBook biographyBook = new BiographyBook("Steve Jobs","Walter Isaacson",650
+        ,"Biography",LocalDate.of(2025,5,15),LocalDate.of(2025,6,15),"Steve Jobs",1955,2011);
+        manager.addBook(biographyBook);
+
+        
     }
 }
