@@ -87,7 +87,6 @@ public class LibraryApp {
         ,480,"History",LocalDate.of(2025,5,15),LocalDate.of(2025,6,15),"11000 BCE","Global");
         manager.addBook(historicalBook);
     }
-
     public static void addBook(Scanner scanner, LibraryManager manager){
         System.out.println("Enter the book type" +
         "1-Biography" +
@@ -253,6 +252,10 @@ public class LibraryApp {
                 break;     
         }
     }
-
+    public static void removeBook(Scanner scanner , LibraryManager manager){
+        System.out.println("Enter the book code");
+        String code = scanner.nextLine();
+        manager.removeBook(code);
+    }
 }
 
