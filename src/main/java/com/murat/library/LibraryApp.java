@@ -2,6 +2,7 @@ package com.murat.library;
 import com.murat.library.genres.*;
 import java.time.LocalDate;
 import java.util.Scanner;
+import com.murat.library.utils.LibraryUtils;
 public class LibraryApp {
     public static void main(String[] args){
     Scanner scanner = new Scanner(System.in);
@@ -38,7 +39,7 @@ public class LibraryApp {
                 manager.listBooks();
                 break;
             case 4:
-                findBookByLibraryCodeM(scanner,manager);
+                findBookByLibraryCode(scanner,manager);
                 break;
             case 5:
                 filterBooksByCategory(scanner,manager);
@@ -257,5 +258,11 @@ public class LibraryApp {
         String code = scanner.nextLine();
         manager.removeBook(code);
     }
+    public static void findBookByLibraryCode(Scanner scanner , LibraryManager manager){
+        System.out.println("Enter the library code to search for:");
+        String bookCode = scanner.nextLine();
+        LibraryUtils.findBookByCode(manager,bookCode);
+    }
+
 }
 
