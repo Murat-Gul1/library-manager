@@ -264,5 +264,11 @@ public class LibraryApp {
         LibraryUtils.findBookByCode(manager,bookCode);
     }
 
+    public static void filterBooksByCategory(Scanner scanner , LibraryManager manager){
+        System.out.println("write the book category");
+        String category = scanner.nextLine();
+        LibraryUtils.filterByCategory(manager,category);
+    }
+
 }
 
