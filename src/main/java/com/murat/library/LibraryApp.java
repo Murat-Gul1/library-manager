@@ -70,11 +70,31 @@ public class LibraryApp {
     }
     scanner.close();
     }
-    
-    
 
-    
 
+
+
+    /**
+     * Initializes the library with a set of sample books across different genres.
+     * This method is typically called at application startup to populate the library
+     * with example books for demonstration and testing purposes.
+     *
+     * The sample books include:
+     * <ul>
+     *   <li>A biography of Steve Jobs by Walter Isaacson</li>
+     *   <li>A science fiction book "A Brief History of Time" by Stephen Hawking</li>
+     *   <li>A historical book "Guns, Germs, and Steel" by Jared Diamond</li>
+     * </ul>
+     *
+     * @param manager The LibraryManager instance where the sample books will be added.
+     *               Must not be null.
+     *
+     * @throws NullPointerException if the provided manager is null
+     *
+     * @see BiographyBook
+     * @see ScienceFictionBook
+     * @see HistoricalBook
+     */
     public static void initializeSampleBooks(LibraryManager manager){
         BiographyBook biographyBook = new BiographyBook("Steve Jobs","Walter Isaacson",650
         ,"Biography",LocalDate.of(2025,5,15),LocalDate.of(2025,6,15),"Steve Jobs",1955,2011);
@@ -88,6 +108,46 @@ public class LibraryApp {
         ,480,"History",LocalDate.of(2025,5,15),LocalDate.of(2025,6,15),"11000 BCE","Global");
         manager.addBook(historicalBook);
     }
+
+    /**
+     * Adds a new book to the library based on user input.
+     *
+     * This method presents a menu of book types to the user and collects
+     * the necessary information to create and add a new book to the library.
+     * The method handles seven different book types, each with its own
+     * specific set of attributes.
+     *
+     * <p>Book types:
+     * <ol>
+     *   <li>Biography - Requires subject name, birth year, and death year</li>
+     *   <li>Detective - Requires mystery level and sub-genre</li>
+     *   <li>Fantasy - Requires sub-genre and fantasy level</li>
+     *   <li>Historical - Requires era start year and region</li>
+     *   <li>Horror - Requires sub-genre and horror level</li>
+     *   <li>Science Fiction - Requires sub-genre and sci-fi level</li>
+     *   <li>Romance - Requires sub-genre and romance level</li>
+     * </ol>
+     *
+     * All book types require the following common attributes:
+     * <ul>
+     *   <li>Title</li>
+     *   <li>Author name</li>
+     *   <li>Page count</li>
+     *   <li>Borrowed date (in yyyy-MM-dd format)</li>
+     *   <li>Return date (in yyyy-MM-dd format)</li>
+     * </ul>
+     *
+     * @param scanner The Scanner object used to read user input
+     * @param manager The LibraryManager instance where the new book will be added
+     *
+     * @see BiographyBook
+     * @see DetectiveBook
+     * @see FantasyBook
+     * @see HistoricalBook
+     * @see HorrorBook
+     * @see ScienceFictionBook
+     * @see RomanceBook
+     */
     public static void addBook(Scanner scanner, LibraryManager manager){
         System.out.println("Enter the book type" +
         "1-Biography" +
@@ -253,17 +313,72 @@ public class LibraryApp {
                 break;     
         }
     }
+
+    /**
+     * Removes a book from the library based on its unique library code.
+     *
+     * This method prompts the user to enter a book code and attempts to remove
+     * the corresponding book from the library's catalog. The operation's success
+     * or failure is determined by the return value of the manager's removeBook method.
+     *
+     * @param scanner The Scanner object used to read user input
+     * @param manager The LibraryManager instance from which the book will be removed
+     *
+     * @apiNote The book code comparison is case-insensitive.
+     *
+     * @example
+     * // Example usage:
+     * // User enters a code like "BK-B202505241441-123"
+     * // Returns true if book was found and removed, false otherwise
+     */
     public static void removeBook(Scanner scanner , LibraryManager manager){
         System.out.println("Enter the book code");
         String code = scanner.nextLine();
         manager.removeBook(code);
     }
+
+    /**
+     * Searches for a book in the library using its unique library code.
+     *
+     * This method prompts the user to enter a library code and displays the
+     * corresponding book's details if found. The search is performed by the
+     * LibraryUtils.findBookByCode() method, which handles the actual search
+     * operation and displays the results.
+     *
+     * @param scanner The Scanner object used to read the library code input
+     * @param manager The LibraryManager instance containing the book catalog
+     *
+     * @see LibraryUtils#findBookByCode(LibraryManager, String)
+     *
+     * @example
+     * // Example usage:
+     * // User enters: "BK-B202505241500-456"
+     * // Output: Displays book details if found, or "Book not found" message
+     */
     public static void findBookByLibraryCode(Scanner scanner , LibraryManager manager){
         System.out.println("Enter the library code to search for:");
         String bookCode = scanner.nextLine();
         LibraryUtils.findBookByCode(manager,bookCode);
     }
 
+    /**
+     * Filters and displays books by a specific category.
+     *
+     * This method prompts the user to enter a book category and displays
+     * all books that match the given category. The search is case-insensitive.
+     * If no books are found in the specified category, an appropriate message
+     * will be displayed.
+     *
+     * @param scanner The Scanner object used to read the category input
+     * @param manager The LibraryManager instance containing the book catalog
+     *
+     * @see LibraryUtils#filterByCategory(LibraryManager, String)
+     *
+     * @example
+     * // Example usage:
+     * // User enters: "Science Fiction"
+     * // Output: Displays all books in the Science Fiction category
+     */
     public static void filterBooksByCategory(Scanner scanner , LibraryManager manager){
         System.out.println("write the book category");
         String category = scanner.nextLine();
