@@ -380,7 +380,29 @@ public class LibraryApp {
         String category = scanner.nextLine();
         LibraryUtils.filterByCategory(manager,category);
     }
-     
+    /**
+ * Filters and displays books written by a specific author.
+ *
+ * This method prompts the user to enter an author name and displays
+ * all books written by that author. The search is case-insensitive.
+ * If no books are found by the specified author, an appropriate message
+ * will be displayed.
+ *
+ * @param scanner The Scanner object used to read the author name input
+ * @param manager The LibraryManager instance containing the book catalog
+ *
+ * @see LibraryUtils#filterByAuthor(LibraryManager, String)
+ *
+ * @example
+ * // Example usage:
+ * // User enters: "Stephen Hawking"
+ * // Output: Displays all books written by Stephen Hawking or "No books found for author" message
+ */
+    public static void filterBooksByAuthor(Scanner scanner , LibraryManager manager){
+        System.out.println("write the author name");
+        String author = scanner.nextLine();
+        LibraryUtils.filterByAuthor(manager, author);
+    }
 
 }
 
