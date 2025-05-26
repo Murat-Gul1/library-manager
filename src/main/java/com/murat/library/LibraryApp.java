@@ -108,7 +108,6 @@ public class LibraryApp {
         ,480,"History",LocalDate.of(2025,5,15),LocalDate.of(2025,6,15),"11000 BCE","Global");
         manager.addBook(historicalBook);
     }
-
     /**
      * Adds a new book to the library based on user input.
      *
@@ -313,7 +312,6 @@ public class LibraryApp {
                 break;     
         }
     }
-
     /**
      * Removes a book from the library based on its unique library code.
      *
@@ -336,7 +334,6 @@ public class LibraryApp {
         String code = scanner.nextLine();
         manager.removeBook(code);
     }
-
     /**
      * Searches for a book in the library using its unique library code.
      *
@@ -360,7 +357,6 @@ public class LibraryApp {
         String bookCode = scanner.nextLine();
         LibraryUtils.findBookByCode(manager,bookCode);
     }
-
     /**
      * Filters and displays books by a specific category.
      *
@@ -384,6 +380,7 @@ public class LibraryApp {
         String category = scanner.nextLine();
         LibraryUtils.filterByCategory(manager,category);
     }
+     
 
 }
 
