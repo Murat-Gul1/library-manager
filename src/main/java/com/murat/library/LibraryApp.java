@@ -21,8 +21,6 @@ public class LibraryApp {
         System.out.println("6. Filter books by author");
         System.out.println("7. Advanced search");
         System.out.println("8. Update book");
-        System.out.println("9. Save books to file");
-        System.out.println("10. Load books from file");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
 
@@ -52,12 +50,6 @@ public class LibraryApp {
                 break;
             case 8:
                 updateBook(scanner,manager);
-                break;
-            case 9:
-                saveBooksToFile(scanner,manager);
-                break;
-            case 10:
-                loadBooksFromFile(scanner,manager);
                 break;
             case 0:
                 exit = true;
@@ -148,13 +140,13 @@ public class LibraryApp {
      * @see RomanceBook
      */
     public static void addBook(Scanner scanner, LibraryManager manager){
-        System.out.println("Enter the book type" +
-        "1-Biography" +
-        "2-Detective" +
-        "3-Fantasy" +
-        "4-Historical" +
-        "5-Horor" +
-        "6-Science Fiction" +
+        System.out.println("Enter the book type \n" +
+        "1-Biography \n" +
+        "2-Detective \n" +
+        "3-Fantasy \n" +
+        "4-Historical \n" +
+        "5-Horor \n" +
+        "6-Science Fiction \n" +
         "7-Romance");
         int bookType = scanner.nextInt();
         scanner.nextLine();
@@ -164,6 +156,8 @@ public class LibraryApp {
         LocalDate borrowedDate;
         LocalDate returnDate;
         String subGenre;
+        String borrowedDateInput;
+        String returnDateInput;
         switch(bookType){
             case 1:
                 System.out.println("Enter the book title");
@@ -173,10 +167,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the subject name");
                 String subjectName = scanner.nextLine();
                 System.out.println("Enter the birth year");
@@ -196,10 +210,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the mystery level");
                 int mysteryLevel = scanner.nextInt();
                 scanner.nextLine();
@@ -216,10 +250,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the sub genre");
                 subGenre = scanner.nextLine();
                 System.out.println("Enter the fantasy level");
@@ -236,10 +290,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the era start year");
                 String eraStartYear = scanner.nextLine();
                 System.out.println("Enter the region");
@@ -255,10 +329,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the sub genre");
                 subGenre = scanner.nextLine();
                 System.out.println("Enter the horror level");
@@ -275,10 +369,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the sub genre");
                 subGenre = scanner.nextLine();
                 System.out.println("Enter the science fiction level");
@@ -295,10 +409,30 @@ public class LibraryApp {
                 System.out.println("Enter the page count");
                 pageCount = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the borrowed date");
-                borrowedDate = LocalDate.parse(scanner.nextLine());
-                System.out.println("Enter the return date");
-                returnDate = LocalDate.parse(scanner.nextLine());
+                System.out.println("Enter the borrowed date(yyyy-MM-dd format, or 'null' for no borrowed date):");
+                borrowedDateInput = scanner.nextLine();
+                try{
+                    if(borrowedDateInput.equalsIgnoreCase("null") || borrowedDateInput.equalsIgnoreCase("0")){
+                        borrowedDate = null;
+                    }else{
+                        borrowedDate = LocalDate.parse(borrowedDateInput);
+                    }
+                }catch (Exception e){
+                    System.out.println("Invalid date format. Setting borrowed date to null.");
+                    borrowedDate = null;
+                }
+                System.out.println("Enter the return date (yyyy-MM-dd format, or 'null' for no return date):");
+                returnDateInput = scanner.nextLine();
+                try{
+                    if(returnDateInput.equalsIgnoreCase("null") || returnDateInput.equalsIgnoreCase("0")){
+                        returnDate = null;
+                }else{
+                        returnDate = LocalDate.parse(returnDateInput);
+                }
+               }catch(Exception e){
+                    System.out.println("Invalid date format. Setting return date to null.");
+                    returnDate = null;
+               }
                 System.out.println("Enter the sub genre");
                 subGenre = scanner.nextLine();
                 System.out.println("Enter the romance level");
@@ -403,6 +537,82 @@ public class LibraryApp {
         String author = scanner.nextLine();
         LibraryUtils.filterByAuthor(manager, author);
     }
+
+
+    /**
+     * Performs an advanced search for books based on multiple criteria.
+     *
+     * This method allows users to search for books using a combination of author name,
+     * category, and maximum page count. The search is case-insensitive and will return
+     * all books that match all the specified criteria.
+     *
+     * <p>Search criteria:
+     * <ul>
+     *   <li><b>Author:</b> Full or partial author name (case-insensitive)</li>
+     *   <li><b>Category:</b> Exact category name (case-insensitive)</li>
+     *   <li><b>Maximum Page Count:</b> Books with page count less than or equal to this value</li>
+     * </ul>
+     *
+     * @param scanner The Scanner object used to read user input
+     * @param manager The LibraryManager instance containing the book catalog
+     *
+     * @see LibraryUtils#advancedSearch(LibraryManager, String, String, int)
+     *
+     * @example
+     * // Example usage:
+     * // Enter the author name: stephen
+     * // Enter the category: Science
+     * // Enter the maximum page count: 300
+     * // Returns: All science books by authors with "stephen" in their name having 300 or fewer pages
+     *
+     * @implNote This method delegates the actual search logic to LibraryUtils.advancedSearch()
+     */
+    public static void advancedSearch(Scanner scanner , LibraryManager manager){
+        System.out.println("Enter the author name");
+        String author = scanner.nextLine();
+        System.out.println("Enter the category");
+        String category = scanner.nextLine();
+        System.out.println("Enter the maximum page count");
+        int maxPageCount = scanner.nextInt();
+        scanner.nextLine();
+        LibraryUtils.advancedSearch(manager, author, category, maxPageCount);
+    }
+
+    /**
+     * Updates an existing book's information using its unique library code.
+     *
+     * This method prompts the user to enter a book code and then initiates
+     * the update process for the corresponding book. The actual update logic
+     * is handled by the LibraryUtils.updateBookByCode() method.
+     *
+     * <p>The update process typically involves:
+     * <ol>
+     *   <li>Finding the book by its unique code</li>
+     *   <li>Prompting the user for new values</li>
+     *   <li>Validating the input</li>
+     *   <li>Updating the book's properties</li>
+     * </ol>
+     *
+     * @param scanner The Scanner object used to read user input
+     * @param manager The LibraryManager instance containing the book catalog
+     *
+     * @see LibraryUtils#updateBookByCode(LibraryManager, String)
+     *
+     * @example
+     * // Example usage:
+     * // Enter the book code: BK-B202505241441-123
+     * // Then follow the on-screen prompts to update book details
+     *
+     * @implNote The book code is case-sensitive and must match exactly
+     * @since 1.0
+     */
+    public static void updateBook(Scanner scanner , LibraryManager manager){
+        System.out.println("Enter the book code");
+        String code = scanner.nextLine();
+        LibraryUtils.updateBookByCode(manager , code);
+    }
+
+
 
 }
 

@@ -1,7 +1,7 @@
 package com.murat.library;
 import com.murat.library.utils.BookUtils;
 import java.time.LocalDate;
-
+import java.util.Scanner;
 
 /**
  * Represents a book in the library system.
@@ -87,7 +87,22 @@ public class Book {
     }
 
     public void setBorrowedDate(LocalDate borrowedDate) {
-        this.borrowedDate = borrowedDate;
+        try {
+            if (borrowedDate == null) {
+                this.borrowedDate = null;
+                return;
+            }
+            
+            if (borrowedDate.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Borrowed date cannot be in the future");
+            }
+            
+            this.borrowedDate = borrowedDate;
+            
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error setting borrowed date: " + e.getMessage());
+            throw e;
+        }
     }
 
     public LocalDate getReturnDate() {
