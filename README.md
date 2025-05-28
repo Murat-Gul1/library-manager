@@ -450,7 +450,7 @@ LibraryUtils.advancedSearch(manager, "Agatha Christie", "Detective", 400);
 
 ## 📄 License & Legal
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for complete details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for complete details.
 
 ### MIT License Summary
 - ✅ Commercial use permitted
