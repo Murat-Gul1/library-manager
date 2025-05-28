@@ -147,10 +147,18 @@ public class BiographyBook extends Book {
      */
     @Override
     public String toString() {
+        String deathYearStr;
+        if(deathYear == -1){
+            deathYearStr = "Still alive";
+        }else if(deathYear == 0){
+            deathYearStr = "No information available";
+        }else{
+            deathYearStr = String.valueOf(deathYear);
+        }
         return super.toString() +
-                " | subjectName: " + subjectName +
-                " | birthYear: " + birthYear +
-                " | deathYear: " + deathYear;
+                " | Subject Name: " + subjectName +
+                " | Subject Birth Year: " + birthYear +
+                " | Subject Death Year: " + deathYearStr;
     }
 }
 

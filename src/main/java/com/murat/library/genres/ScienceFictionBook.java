@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * </ul>
  * Each book is assigned a unique library code using the timestamp, a random number, and a counter.
  */
-
 public class ScienceFictionBook extends Book {
     /** Counter for generating unique library codes. */
     private final static AtomicInteger counter = new AtomicInteger();

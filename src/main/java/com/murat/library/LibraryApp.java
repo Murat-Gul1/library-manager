@@ -3,15 +3,44 @@ import com.murat.library.genres.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 import com.murat.library.utils.LibraryUtils;
+
+/**
+ * Main class to run the library management system.
+ */
 public class LibraryApp {
+    /**
+     * Main method to run the library management system.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args){
+        /**
+         * Scanner object to read user input.
+         */
     Scanner scanner = new Scanner(System.in);
+    /**
+     * LibraryManager instance to manage the library.
+     */
     LibraryManager manager = new LibraryManager();
+    /**
+     * Boolean flag to control the loop.
+     */
     boolean exit = false;
+    /**
+     * Initializes the library with sample books.
+     */
     initializeSampleBooks(manager);
+    /**
+     * Welcome message.
+     */
     System.out.println("Welcome to the Library Management System");
-    
+    /**
+     * Loop to display the menu and handle user choices.
+     */
     while(!exit){
+        /**
+         * Menu options.
+         */
         System.out.println("\n----- LIBRARY MANAGEMENT SYSTEM -----");
         System.out.println("1. Add a book");
         System.out.println("2. Remove a book");
@@ -60,6 +89,9 @@ public class LibraryApp {
                 break;
         }
     }
+    /**
+     * Closes the scanner.
+     */
     scanner.close();
     }
 
@@ -193,10 +225,10 @@ public class LibraryApp {
                }
                 System.out.println("Enter the subject name");
                 String subjectName = scanner.nextLine();
-                System.out.println("Enter the birth year");
+                System.out.println("Enter the subject birth year");
                 int birthYear = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter the death year");
+                System.out.println("Enter the subject death year(Use -1 for living person and null is not allowed and null is for indefinite dates)");
                 int deathYear = scanner.nextInt();
                 scanner.nextLine();
                 BiographyBook biographyBook = new BiographyBook(title, author, pageCount, "Biography", borrowedDate, returnDate, subjectName, birthYear, deathYear);

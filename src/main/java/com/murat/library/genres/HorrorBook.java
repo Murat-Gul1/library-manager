@@ -19,7 +19,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * </ul>
  * All extra data is validated through {@link BookUtils}.
  */
-
 public class HorrorBook extends Book {
     private static final AtomicInteger counter = new AtomicInteger();
     private static final Random random = new Random();
@@ -73,24 +72,57 @@ public class HorrorBook extends Book {
             super.setLibraryCode(libraryCode);
     }
 
+    /**
+     * Sets the sub-genre of the book.
+     *
+     * @param subGenre the sub-genre to set
+     */
     public void setSubGenre(String subGenre){
             this.subGenre = BookUtils.validateNameText(subGenre,"Sub-Genre");
     }
+
+    /**
+     * Gets the sub-genre of the book.
+     *
+     * @return the sub-genre
+     */
     public String getSubGenre(){
         return subGenre;
     }
+    
+    /**
+     * Sets the scare level of the horror book.
+     *
+     * @param scareLevel an integer from 1 to 10 indicating the intensity of scares
+     */
     public void setScareLevel(int scareLevel){
             this.scareLevel = BookUtils.validateLevel1to10(scareLevel);
     }
+
+    /**
+     * Gets the scare level of the horror book.
+     *
+     * @return the scare level (1-10)
+     */
     public int getScareLevel(){
         return scareLevel;
     }
 
+    /**
+     * Gets the unique library code of the horror book.
+     *
+     * @return the library code
+     */
     @Override
     public String getLibraryCode() {
         return libraryCode;
     }
 
+    /**
+     * Returns a string representation of the horror book, including its library code, title, author, and category.
+     *
+     * @return a string describing the book
+     */
     @Override
     public  String toString(){
        return   super.toString() +
